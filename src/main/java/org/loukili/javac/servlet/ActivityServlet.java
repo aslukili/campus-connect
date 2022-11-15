@@ -4,10 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.loukili.javac.entity.*;
-import org.loukili.javac.service.ActivityService;
-import org.loukili.javac.service.ExerciseService;
-import org.loukili.javac.service.ICRUDService;
-import org.loukili.javac.service.ResponsibleService;
+import org.loukili.javac.service.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -73,10 +70,16 @@ public class ActivityServlet extends HttpServlet {
   private void updateActivity(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
     Activity activityToBeUpdated = new Activity();
     List<Exercise> exercisesToActivity = new ArrayList<>();
+    List<Participant> participantsToActivity = new ArrayList<>();
     String[] assignedExercises = request.getParameterValues("exercises");
     Arrays.stream(assignedExercises).forEach(exercise -> {
       // get the exercise from the db, and add it to exercises list
       exercisesToActivity.add(new ExerciseService().find(Long.parseLong(exercise)));
+    });
+    String[] assignedParticipants = request.getParameterValues("participants");
+    Arrays.stream(assignedParticipants).forEach(participant -> {
+      // get the exercise from the db, and add it to exercises list
+      participantsToActivity.add(new ParticipantService().find(Long.parseLong(participant)));
     });
     activityToBeUpdated.setId(Long.parseLong(request.getParameter("id")));
     activityToBeUpdated.setTitle(request.getParameter("title"));
