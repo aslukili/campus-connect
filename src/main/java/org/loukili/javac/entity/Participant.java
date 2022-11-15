@@ -6,12 +6,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import org.hibernate.Hibernate;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Participant extends User {
+public class Participant extends User implements Serializable {
 
   public Participant() {
   }

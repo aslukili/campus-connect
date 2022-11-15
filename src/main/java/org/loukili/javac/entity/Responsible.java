@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
+import java.io.Serializable;
+
 @Entity
-public class Responsible extends User {
+public class Responsible extends User implements Serializable {
 
   public Responsible() {
   }

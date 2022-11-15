@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: aslu
@@ -11,6 +12,34 @@
   <title>all exercises</title>
 </head>
 <body>
-
+list all exercises here
+<div align="center">
+  <table border="1" cellpadding="5">
+    <caption><h2>List of exercises</h2></caption>
+    <tr>
+      <th>title</th>
+      <th>year</th>
+      <th>start date</th>
+      <th>end date</th>
+      <th>status</th>
+      <th>Actions</th>
+    </tr>
+    <jsp:useBean id="exercises" scope="request" type="java.util.List"/>
+    <c:forEach items="${exercises}" var="exercise">
+      <tr>
+        <td><c:out value="${exercise.getTitle()}" /></td>
+        <td><c:out value="${exercise.year}" /></td>
+        <td><c:out value="${exercise.getStartDate()}" /></td>
+        <td><c:out value="${exercise.getEndDate()}" /></td>
+        <td><c:out value="${exercise.getExerciseStatus()}" /></td>
+        <td>
+          <a href="edit-exercise?id=<c:out value='${exercise.id}' />">Edit</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+            <%--          <a href="delete?id=<c:out value='${activity.id_activity}' />">Delete</a>--%>
+        </td>
+      </tr>
+    </c:forEach>
+  </table>
+</div>
 </body>
 </html>

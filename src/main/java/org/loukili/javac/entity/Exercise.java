@@ -3,13 +3,14 @@ package org.loukili.javac.entity;
 import jakarta.persistence.*;
 import org.hibernate.Hibernate;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Exercise {
+public class Exercise implements Serializable {
   public Exercise() {
   }
 
@@ -33,6 +34,17 @@ public class Exercise {
 
   @ManyToMany(mappedBy = "exercises", cascade = CascadeType.DETACH)
   private List<Activity> activities = new ArrayList<>();
+
+  @Column(name = "title")
+  private String title;
+
+  public String getTitle() {
+    return this.title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
   public List<Activity> getActivities() {
     return activities;
