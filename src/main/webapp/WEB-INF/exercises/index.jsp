@@ -27,15 +27,15 @@ list all exercises here
     <jsp:useBean id="exercises" scope="request" type="java.util.List"/>
     <c:forEach items="${exercises}" var="exercise">
       <tr>
-        <td><c:out value="${exercise.getTitle()}" /></td>
+        <td><c:out value="${exercise.title}" /></td>
         <td><c:out value="${exercise.year}" /></td>
-        <td><c:out value="${exercise.getStartDate()}" /></td>
-        <td><c:out value="${exercise.getEndDate()}" /></td>
-        <td><c:out value="${exercise.getExerciseStatus()}" /></td>
+        <td><c:out value="${exercise.startDate}" /></td>
+        <td><c:out value="${exercise.endDate}" /></td>
+        <td><c:out value="${exercise.exerciseStatus}" /></td>
         <td>
           <a href="edit-exercise?id=<c:out value='${exercise.id}' />">Edit</a>
           &nbsp;&nbsp;&nbsp;&nbsp;
-            <%--          <a href="delete?id=<c:out value='${activity.id_activity}' />">Delete</a>--%>
+          <a href="delete-exercise?id=<c:out value='${exercise.id}' />">Delete</a>
         </td>
       </tr>
     </c:forEach>

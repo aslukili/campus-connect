@@ -11,7 +11,7 @@ public class ExerciseService implements ICRUDService<Exercise> {
 
   @Override
   public Exercise find(long id) {
-    return null;
+    return exerciseDao.find(id);
   }
 
   @Override
@@ -25,12 +25,12 @@ public class ExerciseService implements ICRUDService<Exercise> {
   }
 
   @Override
-  public void update(Exercise user) {
-
+  public void update(Exercise exercise) {
+    exerciseDao.update(exercise);
   }
 
   @Override
   public boolean delete(long id) {
-    return false;
+    return exerciseDao.delete(id);
   }
 }

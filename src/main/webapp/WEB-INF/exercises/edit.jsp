@@ -1,3 +1,4 @@
+<jsp:useBean id="exercise" scope="request" type="org.loukili.javac.entity.Exercise"/>
 <%--
   Created by IntelliJ IDEA.
   User: aslu
@@ -15,12 +16,13 @@
 <body>
 <form method="post" action="update-exercise">
   <div>
+    <input type="hidden" name="id" value="${exercise.id}">
     <label>exercise title</label><br>
-    <input type="text" name="title" value="">
+    <input type="text" name="title" value="${exercise.title}">
   </div>
   <div>
     <label>exercise year</label><br>
-    <input type="number" value="2022" min="2020" max="2030" name="year">
+    <input type="number" value="${exercise.year}" min="2020" max="2030" name="year">
   </div>
   <div>
     <label>start date</label>

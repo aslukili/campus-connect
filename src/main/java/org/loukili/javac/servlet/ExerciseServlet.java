@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "ExerciseServlet", urlPatterns = {"/exercises", "/create-exercise", "/insert-exercise", "/update-exercise", "/edit-exercise"})
+@WebServlet(name = "ExerciseServlet", urlPatterns = {"/exercises", "/create-exercise", "/insert-exercise", "/update-exercise", "/edit-exercise", "/delete-exercise"})
 public class ExerciseServlet extends HttpServlet {
   ICRUDService<Exercise> exerciseService;
   public void init(){
@@ -35,13 +35,16 @@ public class ExerciseServlet extends HttpServlet {
           createForm(request, response);
           break;
         case "/insert-exercise":
-          storeActivity(request, response);
+          storeExercise(request, response);
           break;
         case "/edit-exercise":
           editForm(request, response);
           break;
         case "/update-exercise":
-          updateActivity(request, response);
+          updateExercise(request, response);
+          break;
+        case "/delete-exercise":
+          deleteExercise(request, response);
           break;
         case "/exercises":
           listActivities(request, response);
@@ -52,6 +55,14 @@ public class ExerciseServlet extends HttpServlet {
     }
   }
 
+  private void deleteExercise(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, IOException {
+    int id = Integer.parseInt(request.getParameter("id"));
+    if (exerciseService.delete(id)){
+      response.sendRedirect("exercises");
+    }
+    System.out.println("something went wrong");
+  }
+
   private void listActivities(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     List<Exercise> listExercises = exerciseService.getAll();
     request.setAttribute("exercises", listExercises);
@@ -59,15 +70,29 @@ public class ExerciseServlet extends HttpServlet {
     dispatcher.forward(request, response);
   }
 
-  private void updateActivity(HttpServletRequest request, HttpServletResponse response) {
+  private void updateExercise(HttpServletRequest request, HttpServletResponse response) throws ParseException, ServletException, IOException {
+    Exercise exerciseToBeUpdated = new Exercise();
 
+    exerciseToBeUpdated.setId(Long.parseLong(request.getParameter("id")));
+    exerciseToBeUpdated.setYear(Integer.valueOf(request.getParameter("year")));
+    exerciseToBeUpdated.setTitle(request.getParameter("title"));
+    exerciseToBeUpdated.setExerciseStatus(ExerciseStatus.valueOf(request.getParameter("exercise-status")));
+    exerciseToBeUpdated.setStartDate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("start-date")));
+    exerciseToBeUpdated.setEndDate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("end-date")));
+    exerciseService.update(exerciseToBeUpdated);
+    response.sendRedirect("activities");
   }
 
-  private void editForm(HttpServletRequest request, HttpServletResponse response) {
+  private void editForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    Exercise exerciseToEdit = exerciseService.find(Long.parseLong(request.getParameter("id")));
+    request.setAttribute("exercise", exerciseToEdit);
+    request.setAttribute("status", ExerciseStatus.values());
 
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/exercises/edit.jsp");
+    dispatcher.forward(request, response);
   }
 
-  private void storeActivity(HttpServletRequest request, HttpServletResponse response) throws ParseException, SQLException, ServletException, IOException{
+  private void storeExercise(HttpServletRequest request, HttpServletResponse response) throws ParseException, SQLException, ServletException, IOException{
     Exercise exercise = new Exercise();
     exercise.setYear(Integer.valueOf(request.getParameter("year")));
     exercise.setTitle(request.getParameter("title"));
@@ -75,7 +100,6 @@ public class ExerciseServlet extends HttpServlet {
     exercise.setStartDate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("start-date")));
     exercise.setEndDate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("end-date")));
     exerciseService.add(exercise);
-    System.out.println("here");
     response.sendRedirect("exercises");
   }
 
