@@ -2,6 +2,7 @@ package org.loukili.javac.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Activity {
+public class Activity implements Serializable {
   public Activity() {
   }
 

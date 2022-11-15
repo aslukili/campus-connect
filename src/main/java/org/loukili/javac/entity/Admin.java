@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
+import java.io.Serializable;
+
 @Entity
-public class Admin extends User {
+public class Admin extends User implements Serializable {
 
   @Column(name = "email", nullable = false, unique = true)
   private String email;

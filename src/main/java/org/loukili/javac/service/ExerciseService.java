@@ -1,10 +1,13 @@
 package org.loukili.javac.service;
 
+import org.loukili.javac.dao.ExerciseDao;
+import org.loukili.javac.dao.Idao;
 import org.loukili.javac.entity.Exercise;
 
 import java.util.List;
 
 public class ExerciseService implements ICRUDService<Exercise> {
+  private Idao<Exercise> exerciseDao = new ExerciseDao();
 
   @Override
   public Exercise find(long id) {
@@ -13,12 +16,12 @@ public class ExerciseService implements ICRUDService<Exercise> {
 
   @Override
   public List<Exercise> getAll() {
-    return null;
+    return exerciseDao.getAll();
   }
 
   @Override
-  public Exercise add(Exercise user) {
-    return null;
+  public Exercise add(Exercise exercise) {
+    return exerciseDao.add(exercise);
   }
 
   @Override
