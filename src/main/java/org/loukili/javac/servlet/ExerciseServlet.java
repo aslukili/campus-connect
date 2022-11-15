@@ -47,7 +47,7 @@ public class ExerciseServlet extends HttpServlet {
           deleteExercise(request, response);
           break;
         case "/exercises":
-          listActivities(request, response);
+          listExercises(request, response);
           break;
       }
     } catch (SQLException | ParseException ex) {
@@ -63,7 +63,7 @@ public class ExerciseServlet extends HttpServlet {
     System.out.println("something went wrong");
   }
 
-  private void listActivities(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  private void listExercises(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     List<Exercise> listExercises = exerciseService.getAll();
     request.setAttribute("exercises", listExercises);
     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/exercises/index.jsp");
@@ -80,7 +80,7 @@ public class ExerciseServlet extends HttpServlet {
     exerciseToBeUpdated.setStartDate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("start-date")));
     exerciseToBeUpdated.setEndDate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("end-date")));
     exerciseService.update(exerciseToBeUpdated);
-    response.sendRedirect("activities");
+    response.sendRedirect("exercises");
   }
 
   private void editForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

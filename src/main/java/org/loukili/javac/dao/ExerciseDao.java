@@ -26,11 +26,11 @@ public class ExerciseDao  implements Idao<Exercise>{
 
   @Override
   public List<Exercise> getAll() {
-    List activities = null;
+    List exercises = null;
     try  {
       transaction = session.beginTransaction();
       Query query = session.createQuery("from Exercise");
-      activities = query.getResultList();
+      exercises = query.getResultList();
       transaction.commit();
     } catch (Exception e) {
       if (transaction != null) {
@@ -38,7 +38,7 @@ public class ExerciseDao  implements Idao<Exercise>{
       }
       e.printStackTrace();
     }
-    return activities;
+    return exercises;
   }
 
   @Override
