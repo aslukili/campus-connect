@@ -18,7 +18,10 @@ public class ExerciseDao  implements Idao<Exercise>{
 
   @Override
   public Exercise find(long id) {
-    return null;
+    em.getTransaction().begin();
+    Exercise exercise = em.find(Exercise.class, id);
+    em.getTransaction().commit();
+    return exercise;
   }
 
   @Override
@@ -48,12 +51,25 @@ public class ExerciseDao  implements Idao<Exercise>{
   }
 
   @Override
-  public void update(Exercise entity) {
-
+  public void update(Exercise exercise) {
+    transaction = (Transaction) em.getTransaction();
+    transaction.begin();
+    em.merge(exercise);
+    transaction.commit();
   }
 
   @Override
   public boolean delete(long id) {
+    em.getTransaction().begin();
+    Exercise exercise = em.find(Exercise.class, id);
+    em.getTransaction().commit();
+    if (exercise != null) {
+      session.beginTransaction();
+      session.delete(exercise);
+      System.out.println("exercise is deleted");
+      session.getTransaction().commit();
+      return true;
+    }
     return false;
   }
 }
