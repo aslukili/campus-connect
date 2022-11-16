@@ -44,7 +44,7 @@ public class ActivityDao implements Idao<Activity> {
   public Activity add(Activity activity) {
     transaction = (Transaction) em.getTransaction();
     transaction.begin();
-    em.persist(activity);
+    em.merge(activity);
     transaction.commit();
     return activity;
   }

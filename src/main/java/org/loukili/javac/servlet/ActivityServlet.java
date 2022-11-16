@@ -76,11 +76,11 @@ public class ActivityServlet extends HttpServlet {
       // get the exercise from the db, and add it to exercises list
       exercisesToActivity.add(new ExerciseService().find(Long.parseLong(exercise)));
     });
-    String[] assignedParticipants = request.getParameterValues("participants");
-    Arrays.stream(assignedParticipants).forEach(participant -> {
-      // get the exercise from the db, and add it to exercises list
-      participantsToActivity.add(new ParticipantService().find(Long.parseLong(participant)));
-    });
+//    String[] assignedParticipants = request.getParameterValues("participants");
+//    Arrays.stream(assignedParticipants).forEach(participant -> {
+//      // get the exercise from the db, and add it to exercises list
+//      participantsToActivity.add(new ParticipantService().find(Long.parseLong(participant)));
+//    });
     activityToBeUpdated.setId(Long.parseLong(request.getParameter("id")));
     activityToBeUpdated.setTitle(request.getParameter("title"));
     activityToBeUpdated.setDescription(request.getParameter("description"));
