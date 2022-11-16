@@ -59,7 +59,7 @@
         <div class="row">
           <div class="col-md-12 col-lg-12">
             <div class="card">
-              <div class="card-header d-flex justify-content-between"><p>to view more info about an activity, click edit button</p> <a class="link-primary" href="create-activity">add activity</a></div>
+              <div class="card-header d-flex justify-content-between"><p>to view more info about an activity, click edit button</p> <a class="btn-success" href="create-activity">add activity</a></div>
               <div class="card-body">
                 <p class="card-title"></p>
                 <table class="table table-hover" id="dataTables-example" width="100%">
@@ -87,11 +87,9 @@
                       <td><c:out value="${activity.state}" /></td>
                       <td><c:out value="${activity.responsible.getFirstName()}" /></td>
                       <td>
-                          <%--          <a href="activity?id=<c:out value='${activity.id}' />">view</a>--%>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="link-danger" href="delete-activity?id=<c:out value='${activity.id}' />">Delete</a>
-                        &nbsp;&nbsp;
-                        <a class="link-warning" href="edit-activity?id=<c:out value='${activity.id}' />">Edit</a>
+                        <a class="btn-primary" href="view-activity?id=<c:out value='${activity.id}' />">view</a>
+                        <a class="btn-danger" href="delete-activity?id=<c:out value='${activity.id}' />">Delete</a>
+                        <a class="btn-warning" href="edit-activity?id=<c:out value='${activity.id}' />">Edit</a>
 
                       </td>
                     </tr>

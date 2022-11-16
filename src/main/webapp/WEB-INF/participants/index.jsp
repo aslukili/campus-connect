@@ -60,7 +60,7 @@
     <div class="content">
       <div class="container">
         <div class="page-title">
-          <h3>Exercises table</h3>
+          <h3>participants table</h3>
         </div>
         <div class="row">
           <div class="col-md-12 col-lg-12">
