@@ -57,7 +57,6 @@
   <link href="${pageContext.request.contextPath}/assets/vendor/datatables/datatables.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/assets/css/master.css" rel="stylesheet">
 </head>
-
 <body>
 <div class="wrapper">
   <!-- sidebar navigation component -->
@@ -101,7 +100,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">You can edit this information later</h5>
+                <h5 class="card-title"><p>You can edit this information and add exercises to this activity later</p></h5>
                 <form method="post" action="insert-activity" class="needs-validation" novalidate accept-charset="utf-8">
                   <div class="row g-2">
                     <div class="mb-3 col-md-6">
