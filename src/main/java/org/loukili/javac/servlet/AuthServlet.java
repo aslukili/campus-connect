@@ -33,8 +33,6 @@ public class AuthServlet extends HttpServlet {
         AdminService adminService = new AdminService();
 
         Admin adminConnect = adminService.login(email,password);
-        /*
-
         if (adminConnect == null) {
 
             message = "password or email as incorrect";
@@ -59,7 +57,6 @@ public class AuthServlet extends HttpServlet {
 
         }
 
-         */
     }
     public void destroy() {
     }
