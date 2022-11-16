@@ -1,12 +1,10 @@
 package org.loukili.javac.dao;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Id;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.loukili.javac.entity.Activity;
-import org.loukili.javac.entity.Exercise;
 import org.loukili.javac.hibernate.HibernateFactory;
 
 import java.util.List;
@@ -46,7 +44,7 @@ public class ActivityDao implements Idao<Activity> {
   public Activity add(Activity activity) {
     transaction = (Transaction) em.getTransaction();
     transaction.begin();
-    em.merge(activity);
+    em.persist(activity);
     transaction.commit();
     return activity;
   }
