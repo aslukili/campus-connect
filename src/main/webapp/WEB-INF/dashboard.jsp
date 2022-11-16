@@ -126,17 +126,16 @@
             <div class="card">
               <div class="content">
                 <div class="head">
-                  <h5 class="mb-0">Top Visitors by Country</h5>
-                  <p class="text-muted">Current year website visitor data</p>
+                  <h5 class="mb-0">Top 10 Activity</h5>
                 </div>
                 <div class="canvas-wrapper">
                   <table class="table table-striped">
                     <thead class="success">
                     <tr>
-                      <th>Country</th>
-                      <th >Unique Visitors</th>
-                      <th>Country</th>
-                      <th>Unique Visitors</th>
+                      <th>Title Activity</th>
+                      <th >Type of Activity </th>
+                      <th>Statenof Activity</th>
+                      <th>Exercises In Activity</th>
                     </tr>
                     </thead>
                     <tbody>

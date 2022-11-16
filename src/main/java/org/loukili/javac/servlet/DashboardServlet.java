@@ -27,6 +27,10 @@ public class DashboardServlet extends HttpServlet {
 
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    HttpSession session = request.getSession(false);
+    if (session == null) {
+      request.getRequestDispatcher("/index.jsp");
+    }
     long countActivity = filterActService.getCount();
     List<Activity> activities = activityGetAll.getAll();
     long countExercise = filterExeService.getCount();
