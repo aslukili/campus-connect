@@ -76,11 +76,11 @@ public class ActivityServlet extends HttpServlet {
       // get the exercise from the db, and add it to exercises list
       exercisesToActivity.add(new ExerciseService().find(Long.parseLong(exercise)));
     });
-//    String[] assignedParticipants = request.getParameterValues("participants");
-//    Arrays.stream(assignedParticipants).forEach(participant -> {
-//      // get the exercise from the db, and add it to exercises list
-//      participantsToActivity.add(new ParticipantService().find(Long.parseLong(participant)));
-//    });
+    String[] assignedParticipants = request.getParameterValues("participants");
+    Arrays.stream(assignedParticipants).forEach(participant -> {
+      // get the exercise from the db, and add it to exercises list
+      participantsToActivity.add(new ParticipantService().find(Long.parseLong(participant)));
+    });
     activityToBeUpdated.setId(Long.parseLong(request.getParameter("id")));
     activityToBeUpdated.setTitle(request.getParameter("title"));
     activityToBeUpdated.setDescription(request.getParameter("description"));
@@ -91,6 +91,7 @@ public class ActivityServlet extends HttpServlet {
     Responsible responsible = new ResponsibleService().find(Long.parseLong(request.getParameter("responsible")));
     activityToBeUpdated.setResponsible(responsible);
     activityToBeUpdated.setExercises(exercisesToActivity);
+    activityToBeUpdated.setParticipants(participantsToActivity);
     activityService.update(activityToBeUpdated);
     response.sendRedirect("activities");
   }
@@ -98,6 +99,7 @@ public class ActivityServlet extends HttpServlet {
   private void editForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Activity activityToEdit = activityService.find(Long.parseLong(request.getParameter("id")));
     request.setAttribute("exercises", new ExerciseService().getAll());
+    request.setAttribute("participants", new ParticipantService().getAll());
     request.setAttribute("activity", activityToEdit);
     request.setAttribute("states", State.values());
     request.setAttribute("activityTypes", ActivityType.values());

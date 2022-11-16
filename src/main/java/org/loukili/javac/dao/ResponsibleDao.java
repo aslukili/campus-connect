@@ -42,7 +42,11 @@ public class ResponsibleDao implements Idao<Responsible> {
 
   @Override
   public Responsible add(Responsible entity) {
-    return null;
+    transaction = (Transaction) em.getTransaction();
+    transaction.begin();
+    em.persist(entity);
+    transaction.commit();
+    return entity;
   }
 
   @Override

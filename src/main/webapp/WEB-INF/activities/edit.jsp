@@ -119,11 +119,20 @@
                     </div>
                   </div>
                   <div class="mb-3">
-                    <label for="exercises" class="form-label">add exercises to this activity: (choose multiple)</label>
+                    <label for="exercises" class="form-label">add exercises to this activity: (not listed? <a class="link-primary" href="create-exercise" target=”_blank”>add exercises here</a>)</label>
                     <select name="exercises" id="exercises" class="chosen-select w-100" multiple >
                       <jsp:useBean id="exercises" scope="request" type="java.util.List"/>
                       <c:forEach items="${exercises}" var="exercise">
                         <option value="${exercise.id}">${exercise.title}</option>
+                      </c:forEach>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exercises" class="form-label">add participants to this activity: (not listed? <a class="link-primary" href="create-participant" target=”_blank”>add participants here</a>)</label>
+                    <select name="participants" id="participants" class="chosen-select w-100" multiple >
+                      <jsp:useBean id="participants" scope="request" type="java.util.List"/>
+                      <c:forEach items="${participants}" var="participant">
+                        <option value="${participant.id}">${participant.firstName}</option>
                       </c:forEach>
                     </select>
                   </div>
