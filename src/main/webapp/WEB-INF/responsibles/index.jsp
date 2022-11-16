@@ -65,7 +65,7 @@
         <div class="row">
           <div class="col-md-12 col-lg-12">
             <div class="card">
-              <div class="card-header d-flex justify-content-between"><p></p> <a class="link-primary" href="create-exercise">add responsible</a></div>
+              <div class="card-header d-flex justify-content-between"><p></p> <a class="link-primary" href="create-responsible">add responsible</a></div>
               <div class="card-body">
                 <p class="card-title"></p>
                 <table class="table table-hover" id="dataTables-example" width="100%">
