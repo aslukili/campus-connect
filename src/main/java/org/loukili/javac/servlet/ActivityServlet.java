@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet(name = "ActivityServlet", urlPatterns = {"/activities", "/create-activity", "/insert-activity", "/update-activity", "/edit-activity", "/delete-activity"})
+@WebServlet(name = "ActivityServlet", urlPatterns = {"/activities", "/view-activity", "/create-activity", "/insert-activity", "/update-activity", "/edit-activity", "/delete-activity"})
 public class ActivityServlet extends HttpServlet {
   ICRUDService<Activity> activityService;
   public void init(){
@@ -30,6 +30,9 @@ public class ActivityServlet extends HttpServlet {
     String action = request.getServletPath();
     try{
       switch (action){
+        case "/view-activity":
+          viewActivity(request, response);
+          break;
         case "/create-activity":
           createForm(request, response);
           break;
@@ -54,6 +57,14 @@ public class ActivityServlet extends HttpServlet {
     }
   }
 
+  private void viewActivity(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    Activity activityToShow = activityService.find(Long.parseLong(request.getParameter("id")));
+    request.setAttribute("activity", activityToShow);
+
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/activities/show.jsp");
+    dispatcher.forward(request, response);
+  }
+
 
   private void listActivities(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, ParseException, IOException {
     List<Activity> listActivities = activityService.getAll();
@@ -63,7 +74,7 @@ public class ActivityServlet extends HttpServlet {
 
   }
 
-  private void deleteActivity(HttpServletRequest request, HttpServletResponse response) {
+  private void deleteActivity(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
   }
 
