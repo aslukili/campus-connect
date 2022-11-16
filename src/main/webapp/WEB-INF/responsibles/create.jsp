@@ -60,7 +60,7 @@
     <div class="content">
       <div class="container">
         <div class="page-title">
-          <h3>Add a new Exercise</h3>
+          <h3>Add a new Responsible</h3>
         </div>
         <div class="row">
           <div class="col-lg-12">
