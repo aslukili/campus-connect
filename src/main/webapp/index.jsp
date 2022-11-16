@@ -6,51 +6,37 @@
 <head>
   <title>JSP - Hello World</title>
   <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
+  <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/css/auth.css" rel="stylesheet">
 
 </head>
 <body>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12 col-lg-12">
-        <div class="wrap d-md-flex">
-          <div class="login-wrap p-4 p-md-5">
-            <div class="d-flex">
-              <div class="w-100">
-                <h3 class="mb-4">Sign In</h3>
-              </div>
-              <div class="w-100">
-                <p class="social-media d-flex justify-content-end">
-                  <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                  <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                </p>
-              </div>
-            </div>
-            <div class="text-danger ">
-              <c:if test="${ !empty message }"><p>
-                <i class="fa-solid fa-circle-exclamation"> </i><c:out value="${ message }" /></p>
-              </c:if>
-            </div>
-
-            <form method="post" action="login">
-              <div class="form-group mb-3">
-                <label class="label" >Login or email</label>
-                <input type="text" name="email" class="form-control" placeholder="Entre Your Email Or Login " required>
-              </div>
-              <div class="form-group mb-3">
-                <label class="label" >Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Entre Your Password" required>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
-              </div>
-            </form>
-            <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
-          </div>
+<div class="wrapper">
+  <div class="auth-content">
+    <div class="card">
+      <div class="card-body text-center">
+        <div class="mb-4">
         </div>
+        <h6 class="mb-4 text-muted">Login to your account</h6>
+        <div class="text-danger ">
+          <c:if test="${ !empty message }"><p>
+            <i class="fa-solid fa-circle-exclamation"> </i><c:out value="${ message }" /></p>
+          </c:if>
+        </div>
+        <form action="login" method="post">
+          <div class="mb-3 text-start">
+            <label  class="form-label">Username Or Email address</label>
+            <input type="text" name="email" class="form-control" placeholder="Enter Email Or Username" required>
+          </div>
+          <div class="mb-5 text-start">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+          </div>
+          <button class="btn btn-primary shadow-2 mb-4">Login</button>
+        </form>
       </div>
     </div>
   </div>
+</div>
 </body>
 </html>

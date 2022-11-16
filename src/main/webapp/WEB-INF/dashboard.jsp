@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 <html lang="en">
@@ -8,7 +9,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tables | Bootstrap Simple Admin Template</title>
+  <title>Dashboard</title>
   <link href="${pageContext.request.contextPath}/assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/assets/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/assets/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
@@ -133,50 +134,22 @@
                     <thead class="success">
                     <tr>
                       <th>Country</th>
-                      <th class="text-end">Unique Visitors</th>
+                      <th >Unique Visitors</th>
+                      <th>Country</th>
+                      <th>Unique Visitors</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-us"></i> United States</td>
-                      <td class="text-end">27,340</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-in"></i> India</td>
-                      <td class="text-end">21,280</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-jp"></i> Japan</td>
-                      <td class="text-end">18,210</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-gb"></i> United Kingdom</td>
-                      <td class="text-end">15,176</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-es"></i> Spain</td>
-                      <td class="text-end">14,276</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-de"></i> Germany</td>
-                      <td class="text-end">13,176</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-br"></i> Brazil</td>
-                      <td class="text-end">12,176</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-id"></i> Indonesia</td>
-                      <td class="text-end">11,886</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-ph"></i> Philippines</td>
-                      <td class="text-end">11,509</td>
-                    </tr>
-                    <tr>
-                      <td><i class="flag-icon flag-icon-nz"></i> New Zealand</td>
-                      <td class="text-end">1,700</td>
-                    </tr>
+                      <jsp:useBean id="activities" scope="request" type="java.util.List"/>
+                      <c:forEach items="${activities}" var="activity">
+                        <tr>
+                          <td><c:out value="${activity.title}" /></td>
+                          <td><c:out value="${activity.activityType}" /></td>
+                          <td> <c:out value="${activity.state}" /></td>
+                          <td><c:out value = "${activity.exercises.size()}"/></td>
+
+                        </tr>
+                      </c:forEach>
                     </tbody>
                   </table>
                 </div>
