@@ -30,6 +30,11 @@ public class AuthServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        if (password.isEmpty() || email.isEmpty()) {
+            message = "password or email as empty";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        }
         AdminService adminService = new AdminService();
 
         Admin adminConnect = adminService.login(email,password);
