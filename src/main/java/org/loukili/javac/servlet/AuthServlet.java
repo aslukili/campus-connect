@@ -23,7 +23,7 @@ public class AuthServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
+        //this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,7 +43,7 @@ public class AuthServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("adminConn", adminConnect);
             if (adminConnect.getRole().equals(Role.ADMIN) ) {
-                response.sendRedirect("create-activity");
+                response.sendRedirect("dashboard");
             } else if (adminConnect.getRole().equals(Role.RESPONSIBLE)) {
                 message = "vous etes responsible";
                 request.setAttribute("message", message);
