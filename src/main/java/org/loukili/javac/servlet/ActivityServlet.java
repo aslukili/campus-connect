@@ -71,7 +71,6 @@ public class ActivityServlet extends HttpServlet {
     request.setAttribute("activities", listActivities);
     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/activities/index.jsp");
     dispatcher.forward(request, response);
-
   }
 
   private void deleteActivity(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
